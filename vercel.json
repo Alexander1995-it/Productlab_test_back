@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "first-backend",
+  "name": "productlab-test-back",
   "builds": [
     { "src": "src/index.ts", "use": "@vercel/node" }
   ],
