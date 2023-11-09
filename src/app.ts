@@ -7,4 +7,4 @@ export const jsonBodyMiddleware = express.json();
 
 app.use(jsonBodyMiddleware);
 
-app.use("/productlab", getProductlabRoutes(db));
+app.use("/", getProductlabRoutes(db));
