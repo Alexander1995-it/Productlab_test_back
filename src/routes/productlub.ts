@@ -6,6 +6,13 @@ import { productlabRepository } from "../repository/courses-repository";
 export const getProductlabRoutes = (db: dbType) => {
   const productlabRouter = express.Router();
 
+  productlabRouter.get("/", (req, res) => {
+    res.json({
+      name: "aaa",
+      age: "12",
+    });
+  });
+
   productlabRouter.post(
     "/login",
     (
