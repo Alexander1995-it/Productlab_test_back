@@ -28,17 +28,17 @@ export const getProductlabRoutes = (db: dbType) => {
         req.body.password,
       );
       if (user) {
-        let token = jwt.sign({ user }, secretKey, { expiresIn: "1h" });
         if (user.token) {
-          token = user.token;
+          res.json({ ...user, token: user.token });
         } else {
+          let token = jwt.sign({ user }, secretKey, { expiresIn: "1h" });
           db.users.forEach((el) => {
             if (el.id === user?.id) {
               el.token = token;
             }
           });
+          res.json({ ...user, token });
         }
-        res.json({ ...user, token });
       } else {
         res.status(401).json({ messages: "Incorrect password or login" });
       }
