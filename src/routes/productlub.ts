@@ -3,6 +3,10 @@ import express, { Response } from "express";
 import { dbType } from "../db/db";
 import { productlabRepository } from "../repository/courses-repository";
 
+const jwt = require("jsonwebtoken");
+
+const secretKey = "mySecretKey";
+
 export const getProductlabRoutes = (db: dbType) => {
   const productlabRouter = express.Router();
 
@@ -24,7 +28,17 @@ export const getProductlabRoutes = (db: dbType) => {
         req.body.password,
       );
       if (user) {
-        res.json(user);
+        let token = jwt.sign({ user }, secretKey, { expiresIn: "1h" });
+        if (user.token) {
+          token = user.token;
+        } else {
+          db.users.forEach((el) => {
+            if (el.id === user?.id) {
+              el.token = token;
+            }
+          });
+        }
+        res.json({ ...user, token });
       } else {
         res.status(401).json({ messages: "Incorrect password or login" });
       }

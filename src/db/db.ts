@@ -1,6 +1,6 @@
 export type dbType = {
   courses: Array<{ id: number; title: string }>;
-  users: Array<{ id: number; email: string; password: string }>;
+  users: Array<{ id: number; email: string; password: string; token?: string }>;
 };
 export const db: dbType = {
   courses: [
