@@ -10,7 +10,7 @@ const secretKey = "mySecretKey";
 export const getProductlabRoutes = (db: dbType) => {
   const productlabRouter = express.Router();
 
-  productlabRouter.get("/", (req, res) => {
+  productlabRouter.get("/product", (req, res) => {
     res.json({
       name: "aaa",
       age: "12",
