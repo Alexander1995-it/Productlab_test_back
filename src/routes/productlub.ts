@@ -9,6 +9,13 @@ const secretKey = "mySecretKey";
 
 export const productlabRouter = express.Router({});
 
+productlabRouter.get("/", (req, res) => {
+  res.json({
+    name: "/",
+    age: "/",
+  });
+});
+
 productlabRouter.get("/product", (req, res) => {
   res.json({
     name: "aaa1",
