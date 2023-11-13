@@ -1,8 +1,6 @@
 import express from "express";
 import { productlabRouter } from "./routes/productlub";
 
-export const fs = require("fs");
-
 export const app = express();
 
 app.use(express.static("db/images"));
