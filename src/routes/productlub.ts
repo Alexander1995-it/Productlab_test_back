@@ -25,6 +25,8 @@ productlabRouter.get("/photos", (req, res) => {
     } else {
       res.status(401);
     }
+  } else {
+    res.status(401);
   }
 });
 
