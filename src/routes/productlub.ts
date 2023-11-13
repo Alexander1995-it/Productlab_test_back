@@ -16,11 +16,8 @@ productlabRouter.get("/", (req, res) => {
   });
 });
 
-productlabRouter.get("/product", (req, res) => {
-  res.json({
-    name: "aaa1",
-    age: "12",
-  });
+productlabRouter.get("/photos", (req, res) => {
+  res.json(db.photos);
 });
 
 productlabRouter.post(
