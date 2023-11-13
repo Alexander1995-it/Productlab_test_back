@@ -47,3 +47,5 @@ productlabRouter.post(
     }
   },
 );
+
+productlabRouter.delete("/logout", (req: any, res: any) => {});
