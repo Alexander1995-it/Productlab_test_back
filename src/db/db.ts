@@ -4,7 +4,7 @@ export type dbType = {
 };
 
 export const db: dbType = {
-  users: [{ id: 1, email: "admin", password: "admin1" }],
+  users: [{ id: 1, email: "admin@gmail.com", password: "admin" }],
   photos: [
     {
       id: 2,
