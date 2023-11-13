@@ -17,7 +17,15 @@ productlabRouter.get("/", (req, res) => {
 });
 
 productlabRouter.get("/photos", (req, res) => {
-  res.json(db.photos);
+  const authorizationHeader = req.header("Authorization");
+  if (authorizationHeader) {
+    const [tokenType, token] = authorizationHeader.split(" ");
+    if (token === db.users[0].token) {
+      res.json(db.photos);
+    } else {
+      res.status(401);
+    }
+  }
 });
 
 productlabRouter.post(
