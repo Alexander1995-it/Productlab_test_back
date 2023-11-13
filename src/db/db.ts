@@ -8,7 +8,7 @@ export const db: dbType = {
   photos: [
     {
       id: 1,
-      img: "/path/to/images/image_1.jpg",
+      url: "/path/to/images/image_1.jpg",
     },
   ],
 };
