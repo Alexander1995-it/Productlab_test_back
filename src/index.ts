@@ -3,7 +3,7 @@ import { productlabRouter } from "./routes/productlub";
 
 export const app = express();
 
-app.use(express.static("db/images"));
+// app.use(express.static("images"));
 
 export const jsonBodyMiddleware = express.json();
 
@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 app.use(jsonBodyMiddleware);
 
 app.use("/", productlabRouter);
+// app.use("/images", express.static(__dirname + "/images"));
 
 const port = process.env.PORT || 3002;
 app.listen(port, () => {
