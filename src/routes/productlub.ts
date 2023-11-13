@@ -23,11 +23,12 @@ productlabRouter.get("/photos", (req, res) => {
     if (token === db.users[0].token) {
       res.json(db.photos);
     } else {
-      res.status(401);
+      res.sendStatus(401);
     }
   } else {
-    res.status(401);
+    res.sendStatus(401);
   }
+  res.json(db.photos);
 });
 
 productlabRouter.post(
