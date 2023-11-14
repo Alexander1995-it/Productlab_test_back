@@ -16,21 +16,6 @@ productlabRouter.get("/", (req, res) => {
   });
 });
 
-productlabRouter.get("/photos", (req, res) => {
-  const authorizationHeader = req.header("Authorization");
-  if (authorizationHeader) {
-    const [tokenType, token] = authorizationHeader.split(" ");
-    if (token === db.users[0].token) {
-      res.json(db.photos);
-    } else {
-      res.sendStatus(401);
-    }
-  } else {
-    res.sendStatus(401);
-  }
-  res.json(db.photos);
-});
-
 productlabRouter.post(
   "/login",
   (
@@ -41,22 +26,32 @@ productlabRouter.post(
       req.body.email,
       req.body.password,
     );
+    let token = jwt.sign(req.body, secretKey, { expiresIn: "1h" });
     if (user) {
-      if (user.token) {
-        res.json({ ...user, token: user.token });
-      } else {
-        let token = jwt.sign({ user }, secretKey, { expiresIn: "1h" });
-        db.users.forEach((el) => {
-          if (el.id === user?.id) {
-            el.token = token;
-          }
-        });
-        res.json({ ...user, token });
-      }
+      db.users.forEach((el) => {
+        if (el.id === user?.id) {
+          el.token = token;
+        }
+      });
+      res.json(user);
     } else {
       res.status(401).json({ messages: "Incorrect password or login" });
     }
   },
 );
+
+productlabRouter.get("/photos", (req, res) => {
+  const authorizationHeader = req.header("Authorization");
+  if (authorizationHeader) {
+    const [tokenType, token] = authorizationHeader.split(" ");
+    if (token === JSON.stringify(db.users[0].token)) {
+      res.json(db.photos);
+    } else {
+      res.sendStatus(401);
+    }
+  } else {
+    res.sendStatus(401);
+  }
+});
 
 productlabRouter.delete("/logout", (req: any, res: any) => {});
