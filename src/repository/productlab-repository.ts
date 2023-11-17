@@ -7,4 +7,10 @@ export const productlabRepository = {
     );
     return user;
   },
+  findUserByToken(token: string) {
+    let user = db.users.find((el) => {
+      return el.token === token;
+    });
+    return user;
+  },
 };

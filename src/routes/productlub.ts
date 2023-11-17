@@ -1,6 +1,6 @@
 import { RequestWithBody } from "../types";
 import express, { Response } from "express";
-import { productlabRepository } from "../repository/courses-repository";
+import { productlabRepository } from "../repository/productlab-repository";
 import { db } from "../db/db";
 
 const jwt = require("jsonwebtoken");
@@ -8,13 +8,6 @@ const jwt = require("jsonwebtoken");
 const secretKey = "mySecretKey";
 
 export const productlabRouter = express.Router({});
-
-productlabRouter.get("/", (req, res) => {
-  res.json({
-    name: "/",
-    age: "/",
-  });
-});
 
 productlabRouter.post(
   "/login",
@@ -26,8 +19,8 @@ productlabRouter.post(
       req.body.email,
       req.body.password,
     );
-    let token = jwt.sign(req.body, secretKey, { expiresIn: "1h" });
     if (user) {
+      let token = jwt.sign(req.body, secretKey, { expiresIn: "1h" });
       db.users.forEach((el) => {
         if (el.id === user?.id) {
           el.token = token;
@@ -39,6 +32,20 @@ productlabRouter.post(
     }
   },
 );
+
+productlabRouter.get("/auth/me", (req: any, res) => {
+  const authorizationHeader = req.header("Authorization");
+  if (authorizationHeader) {
+    const [tokenType, token] = authorizationHeader.split(" ");
+    let foundUser = productlabRepository.findUserByToken(JSON.parse(token));
+    console.log("foundUser", foundUser);
+    if (foundUser) {
+      res.json(foundUser);
+    } else {
+      res.sendStatus(401);
+    }
+  }
+});
 
 productlabRouter.get("/photos", (req, res) => {
   const authorizationHeader = req.header("Authorization");

@@ -12,6 +12,16 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  if (req.path !== "/login") {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      return res.sendStatus(401);
+    }
+  }
+  next();
+});
+
 app.use(jsonBodyMiddleware);
 
 app.use("/", productlabRouter);
