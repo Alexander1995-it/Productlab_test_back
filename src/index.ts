@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (req.path !== "/login" && !authHeader) {
+  if (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") {
     return res.sendStatus(401);
   }
   next();
