@@ -22,11 +22,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/images/image1", (req, res) => {
-  const imagePath = path.join(imagesDirectory, "image1.jpg");
-  res.send(imagePath);
-  app.use(jsonBodyMiddleware);
-});
+// app.get("/images/image1", (req, res) => {
+//   const imagePath = path.join(imagesDirectory, "image1.jpg");
+//   res.send(imagePath);
+//   app.use(jsonBodyMiddleware);
+// });
 
 app.use("/", productlabRouter);
 
