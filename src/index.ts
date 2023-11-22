@@ -17,13 +17,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") {
-    return res.sendStatus(401);
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   const authHeader = req.headers.authorization;
+//   if (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") {
+//     return res.sendStatus(401);
+//   }
+//   next();
+// });
 
 // app.get("/images/image1", (req, res) => {
 //   const imagePath = path.join(imagesDirectory, "image1.jpg");

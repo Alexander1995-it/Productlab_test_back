@@ -49,6 +49,7 @@ productlabRouter.get("/auth/me", (req: any, res) => {
 });
 
 productlabRouter.get("/photos", (req, res) => {
+  res.json("/images/image1.jpg");
   const authorizationHeader = req.header("Authorization");
   if (authorizationHeader) {
     // const imagePath = path.join(imagesDirectory, "image1.jpg");
