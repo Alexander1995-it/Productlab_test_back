@@ -51,12 +51,12 @@ productlabRouter.get("/auth/me", (req: any, res) => {
 productlabRouter.get("/photos", (req, res) => {
   const authorizationHeader = req.header("Authorization");
   if (authorizationHeader) {
-    const imagePath = path.join(imagesDirectory, "image1.jpg");
+    // const imagePath = path.join(imagesDirectory, "image1.jpg");
     // res.sendFile(imagePath);
     const [tokenType, token] = authorizationHeader.split(" ");
     let foundUser = productlabRepository.findUserByToken(JSON.parse(token));
     if (foundUser) {
-      res.json(imagePath);
+      res.json("/images/image1.jpg");
     } else {
       res.sendStatus(401);
     }

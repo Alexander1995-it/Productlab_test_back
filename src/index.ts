@@ -2,8 +2,9 @@ import express from "express";
 import { productlabRouter } from "./routes/productlub";
 
 export const app = express();
-const path = require("path");
-const imagesDirectory = path.join(__dirname, "./images");
+// const path = require("path");
+// const imagesDirectory = path.join(__dirname, "./images");
+app.use(express.static("images"));
 
 export const jsonBodyMiddleware = express.json();
 
