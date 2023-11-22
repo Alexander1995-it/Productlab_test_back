@@ -11,6 +11,10 @@ const secretKey = "mySecretKey";
 
 export const productlabRouter = express.Router({});
 
+productlabRouter.get("/", (req, res) => {
+  res.send("Сервер работает");
+});
+
 productlabRouter.post(
   "/login",
   (
@@ -40,7 +44,6 @@ productlabRouter.get("/auth/me", (req: any, res) => {
   if (authorizationHeader) {
     const [tokenType, token] = authorizationHeader.split(" ");
     let foundUser = productlabRepository.findUserByToken(JSON.parse(token));
-    console.log("foundUser", foundUser);
     if (foundUser) {
       res.json(foundUser);
     } else {
@@ -52,9 +55,12 @@ productlabRouter.get("/auth/me", (req: any, res) => {
 productlabRouter.get("/photos", (req, res) => {
   const authorizationHeader = req.header("Authorization");
   if (authorizationHeader) {
+    const imagePath = path.join(imagesDirectory, "image1.jpg");
+    // res.sendFile(imagePath);
     const [tokenType, token] = authorizationHeader.split(" ");
-    if (token === JSON.stringify(db.users[0].token)) {
-      res.json(db.photos);
+    let foundUser = productlabRepository.findUserByToken(JSON.parse(token));
+    if (foundUser) {
+      res.json(imagePath);
     } else {
       res.sendStatus(401);
     }

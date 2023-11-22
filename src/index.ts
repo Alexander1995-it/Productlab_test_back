@@ -2,6 +2,8 @@ import express from "express";
 import { productlabRouter } from "./routes/productlub";
 
 export const app = express();
+const path = require("path");
+const imagesDirectory = path.join(__dirname, "./images");
 
 export const jsonBodyMiddleware = express.json();
 
@@ -20,7 +22,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(jsonBodyMiddleware);
+app.get("/images/image1", (req, res) => {
+  const imagePath = path.join(imagesDirectory, "image1.jpg");
+  res.send(imagePath);
+  app.use(jsonBodyMiddleware);
+});
 
 app.use("/", productlabRouter);
 
