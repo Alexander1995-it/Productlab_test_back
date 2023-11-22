@@ -3,9 +3,8 @@ import { productlabRouter } from "./routes/productlub";
 
 export const app = express();
 // const path = require("path");
-// const imagesDirectory = path.join(__dirname, "./images");
-// app.use(express.static("images"));
-
+// const imagesDirectory = path.join(__dirname, "./public");
+app.use(express.static(`${__dirname}/public`));
 export const jsonBodyMiddleware = express.json();
 
 app.use(jsonBodyMiddleware);
@@ -25,7 +24,7 @@ app.use((req, res, next) => {
 //   next();
 // });
 
-// app.get("/images/image1", (req, res) => {
+// app.get("/public/image1", (req, res) => {
 //   const imagePath = path.join(imagesDirectory, "image1.jpg");
 //   res.send(imagePath);
 // });

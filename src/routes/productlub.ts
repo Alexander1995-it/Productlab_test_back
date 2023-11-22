@@ -5,7 +5,8 @@ import { db } from "../db/db";
 
 const jwt = require("jsonwebtoken");
 const path = require("path");
-const imagesDirectory = path.join(__dirname, "./images");
+const fs = require("fs");
+const imagesDirectory = path.join(__dirname, "./../public");
 
 const secretKey = "mySecretKey";
 
@@ -48,23 +49,31 @@ productlabRouter.get("/auth/me", (req: any, res) => {
   }
 });
 
+// productlabRouter.get("/photos", (req, res) => {
+//   const imagePath = path.join(imagesDirectory, "image1.jpg");
+//   res.send(imagePath);
+//   const authorizationHeader = req.header("Authorization");
+//   if (authorizationHeader) {
+//     // const imagePath = path.join(imagesDirectory, "image1.jpg");
+//     // res.sendFile(imagePath);
+//     const [tokenType, token] = authorizationHeader.split(" ");
+//     let foundUser = productlabRepository.findUserByToken(JSON.parse(token));
+//     if (foundUser) {
+//       res.json("/public/image1.jpg");
+//     } else {
+//       res.sendStatus(401);
+//     }
+//   } else {
+//     res.sendStatus(401);
+//   }
+// });
+
 productlabRouter.get("/photos", (req, res) => {
   const imagePath = path.join(imagesDirectory, "image1.jpg");
-  res.sendFile(imagePath);
-  // const authorizationHeader = req.header("Authorization");
-  // if (authorizationHeader) {
-  //   // const imagePath = path.join(imagesDirectory, "image1.jpg");
-  //   // res.sendFile(imagePath);
-  //   const [tokenType, token] = authorizationHeader.split(" ");
-  //   let foundUser = productlabRepository.findUserByToken(JSON.parse(token));
-  //   if (foundUser) {
-  //     res.json("/images/image1.jpg");
-  //   } else {
-  //     res.sendStatus(401);
-  //   }
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  const imageUrl = `/images/image1.jpg`;
+  const imgData = fs.readFileSync(imagePath, { encoding: "base64" });
+  const imgSrc = `data:image/jpeg;base64,${imgData}`;
+  res.send("http://localhost:3002/image1.jpg");
 });
 
 productlabRouter.delete("/logout", (req: any, res: any) => {});
