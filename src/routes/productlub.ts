@@ -5,6 +5,7 @@ import { db } from "../db/db";
 
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const imagesDirectory = path.join(__dirname, "./images");
 
 const secretKey = "mySecretKey";
 
