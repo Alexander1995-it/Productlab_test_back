@@ -11,10 +11,6 @@ const secretKey = "mySecretKey";
 
 export const productlabRouter = express.Router({});
 
-productlabRouter.get("/", (req, res) => {
-  res.send("Сервер работает");
-});
-
 productlabRouter.post(
   "/login",
   (
