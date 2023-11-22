@@ -4,6 +4,7 @@ import { productlabRepository } from "../repository/productlab-repository";
 import { db } from "../db/db";
 
 const jwt = require("jsonwebtoken");
+const path = require("path");
 
 const secretKey = "mySecretKey";
 
