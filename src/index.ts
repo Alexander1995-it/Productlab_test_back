@@ -19,7 +19,12 @@ app.use((req, res, next) => {
   if (req.path.startsWith("/images")) {
     return next();
   }
-  if (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") {
+  if (
+    (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") ||
+    (req.headers.accept &&
+      (req.headers.accept.includes("image/") ||
+        req.headers.accept.includes("text/html")))
+  ) {
     return res.sendStatus(401);
   }
   next();
