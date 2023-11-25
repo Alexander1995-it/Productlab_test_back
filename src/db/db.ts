@@ -9,22 +9,22 @@ export const db: dbType = {
     {
       id: 1,
       name: "a",
-      url: "https://previews.123rf.com/images/shushanto/shushanto2209/shushanto220900703/191842443-destruction-of-planets-concept-art-illustration-background-image.jpg",
+      url: "/image_1.jpg",
     },
     {
       id: 2,
       name: "b",
-      url: "https://previews.123rf.com/images/shushanto/shushanto2209/shushanto220900703/191842443-destruction-of-planets-concept-art-illustration-background-image.jpg",
+      url: "/image_2.jpg",
     },
     {
       id: 3,
       name: "c",
-      url: "https://previews.123rf.com/images/shushanto/shushanto2209/shushanto220900703/191842443-destruction-of-planets-concept-art-illustration-background-image.jpg",
+      url: "/image_3.jpg",
     },
     {
       id: 4,
       name: "d",
-      url: "https://previews.123rf.com/images/shushanto/shushanto2209/shushanto220900703/191842443-destruction-of-planets-concept-art-illustration-background-image.jpg",
+      url: "/image_4.jpg",
     },
   ],
 };
