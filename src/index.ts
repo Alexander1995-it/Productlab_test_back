@@ -14,13 +14,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use((req, res, next) => {
-//   const authHeader = req.headers.authorization;
-//   if (req.path === "/photos" && !authHeader) {
-//     return res.sendStatus(401);
-//   }
-//   next();
-// });
+app.use((req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (req.path === "/photos" && !authHeader) {
+    return res.sendStatus(401);
+  }
+  next();
+});
 
 app.use("/", productlabRouter);
 
