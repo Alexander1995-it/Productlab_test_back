@@ -16,12 +16,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (
-    (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") ||
-    (req.headers.accept &&
-      (req.headers.accept.includes("image/") ||
-        req.headers.accept.includes("text/")))
-  ) {
+  if (req.path === "/photos" && !authHeader) {
     return res.sendStatus(401);
   }
   next();
