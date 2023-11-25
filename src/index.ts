@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") ||
     (req.headers.accept &&
       (req.headers.accept.includes("image/") ||
-        req.headers.accept.includes("text")))
+        req.headers.accept.includes("text/")))
   ) {
     return res.sendStatus(401);
   }
