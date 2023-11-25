@@ -16,9 +16,6 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   const authHeader = req.headers.authorization;
-  if (req.path.startsWith("/images")) {
-    return next();
-  }
   if (
     (req.path !== "/login" && !authHeader && req.method !== "OPTIONS") ||
     (req.headers.accept &&
