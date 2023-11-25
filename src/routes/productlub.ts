@@ -4,8 +4,6 @@ import { productlabRepository } from "../repository/productlab-repository";
 import { db } from "../db/db";
 
 const jwt = require("jsonwebtoken");
-const path = require("path");
-const imagesDirectory = path.join(__dirname, "./../images");
 
 const secretKey = "mySecretKey";
 
@@ -57,7 +55,6 @@ productlabRouter.get("/photos", (req, res) => {
     if (foundUser) {
       const host = req.get("host");
       const protocol = req.protocol;
-      const currentUrl = `${protocol}://${host}`;
       const photosWithAbsolutePath = db.photos.map((photo: any) => {
         return {
           ...photo,
