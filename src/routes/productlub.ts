@@ -70,7 +70,7 @@ productlabRouter.get("/photos", (req, res) => {
   }
 });
 
-productlabRouter.get("photos/comment", (req, res) => {
+productlabRouter.get("/photos/comment", (req, res) => {
   if (req.query.name) {
     res.json(req.query.name);
   } else {
@@ -78,8 +78,8 @@ productlabRouter.get("photos/comment", (req, res) => {
   }
 });
 
-productlabRouter.get("/photos/:id", (req, res) => {
-  res.json(req.params.id);
-});
+// productlabRouter.get("/photos/:id", (req, res) => {
+//   res.json(req.params.id);
+// });
 
 productlabRouter.delete("/logout", (req: any, res: any) => {});
