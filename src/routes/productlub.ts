@@ -70,4 +70,8 @@ productlabRouter.get("/photos", (req, res) => {
   }
 });
 
+productlabRouter.get("/photos/:id", (req, res) => {
+  res.json(req.params.id);
+});
+
 productlabRouter.delete("/logout", (req: any, res: any) => {});
